@@ -50,7 +50,10 @@ const createIntern = async function (req, res) {
         .send({ status: false, message: "Email is required" });
     }
     let checkEmail = await internModel.findOne({ email: requestBody.email });
-    if (checkEmail) return res.status(400).send({ status: false, message: "Email already exist" });
+    if (checkEmail)
+      return res
+        .status(400)
+        .send({ status: false, message: "Email already exist" });
 
     if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       return res
@@ -65,13 +68,11 @@ const createIntern = async function (req, res) {
     }
     let checkMobile = await internModel.findOne({ mobile: requestBody.mobile });
     if (checkMobile)
-      return res.status(400).send({status: false, message: "Mobile Number already exist" });
+      return res
+        .status(400)
+        .send({ status: false, message: "Mobile Number already exist" });
 
-    if (
-      !/^((\+91?)?0?)?[6-9]\d{9}$/.test(
-        mobile
-      )
-    ) {
+    if (!(/^((\+91?)?0?)?[6-9]\d{9}$/.test(mobile))) {
       return res.status(400).send({
         status: false,
         message: "Mobile Number is not in correct format",
@@ -84,10 +85,14 @@ const createIntern = async function (req, res) {
         .send({ status: false, message: "College Name is required" });
     }
 
-    let collegeId = await collegeModel.findOne({ name: collegeName }).select({_id : 1})
+    let collegeId = await collegeModel
+      .findOne({ name: collegeName })
+      .select({ _id: 1 });
     // console.log(collegeId)
     if (!collegeId)
-      return res.status(400).send({ status: false, message: "College doesn't exist" });
+      return res
+        .status(400)
+        .send({ status: false, message: "College doesn't exist" });
 
     let obj = {
       name: name,
