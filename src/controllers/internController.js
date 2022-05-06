@@ -68,7 +68,7 @@ const createIntern = async function (req, res) {
       return res.status(400).send({status: false, message: "Mobile Number already exist" });
 
     if (
-      !/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(
+      !/^((\+91?)?0?)?[6-9]\d{9}$/.test(
         mobile
       )
     ) {

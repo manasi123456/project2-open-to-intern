@@ -25,7 +25,7 @@ const internSchema = new mongoose.Schema(
       unique: true,
       validate: {
         validator: function (mobile) {
-          return /^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(
+          return /^((\+91?)?0?)?[6-9]\d{9}$/.test(
             mobile
           );
         },
